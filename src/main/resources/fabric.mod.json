@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "tutorialmod",
+	"id": "reworkedshieldsmod",
 	"version": "${version}",
-	"name": "Tutorial Mod",
-	"description": "This is a tutorial mod be LowSketch!",
+	"name": "Reworked Shields Mod",
+	"description": "Reworks minecraft shields and adds tiered shields!",
 	"authors": [
 		"Me!"
 	],
@@ -12,21 +12,21 @@
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
 	"license": "MIT",
-	"icon": "assets/tutorialmod/icon.png",
+	"icon": "assets/reworkedshieldsmod/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.lowsketch.tutorialmod.TutorialMod"
+			"net.lowsketch.reworkedshieldsmod.ReworkedShieldsMod"
 		],
 		"client": [
-			"net.lowsketch.tutorialmod.TutorialModClient"
+			"net.lowsketch.reworkedshieldsmod.ReworkedShieldsModClient"
 		],
 		"fabric-datagen": [
-			"net.lowsketch.tutorialmod.TutorialModDataGenerator"
+			"net.lowsketch.reworkedshieldsmod.ReworkedShieldsModDataGenerator"
 		]
 	},
 	"mixins": [
-		"tutorialmod.mixins.json"
+		"reworkedshieldsmod.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.1",
