@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "reworkedshieldsmod:wooden_shield",
+    "reworkedshieldsmod:gold_shield",
+    "reworkedshieldsmod:diamond_shield",
+    "reworkedshieldsmod:netherite_shield",
+    "minecraft:shield"
+  ]
+}

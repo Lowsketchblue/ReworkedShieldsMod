@@ -24,6 +24,17 @@ public abstract class ModelLoaderMixin {
 
     @Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/render/model/ModelLoader;addModel(Lnet/minecraft/client/util/ModelIdentifier;)V", ordinal = 3, shift = At.Shift.AFTER))
     public void addShieldModel(BlockColors blockColors, Profiler profiler, Map<Identifier, JsonUnbakedModel> jsonUnbakedModels, Map<Identifier, List<ModelLoader.SourceTrackedData>> blockStates, CallbackInfo ci) {
-        this.addModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "netherite_shield_3d", "inventory"));
+
+        this.addModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "netherite_shield", "inventory"));
+        this.addModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "netherite_shield_blocking", "inventory"));
+
+        this.addModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "diamond_shield", "inventory"));
+        this.addModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "diamond_shield_blocking", "inventory"));
+
+        this.addModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "gold_shield", "inventory"));
+        this.addModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "gold_shield_blocking", "inventory"));
+
+        this.addModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "wooden_shield", "inventory"));
+        this.addModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "wooden_shield_blocking", "inventory"));
     }
 }

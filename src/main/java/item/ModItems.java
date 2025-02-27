@@ -14,8 +14,15 @@ public class ModItems {
     //This creates the items using the function what we created called registerItem
     public static final Item RUBY = registerItem("ruby", new Item(new FabricItemSettings()));
 
+    //332
     public static final Item NETHERITE_SHIELD = registerItem("netherite_shield",
-            new ShieldItem(new FabricItemSettings().maxDamage(10)));
+            new ModShieldItem(new FabricItemSettings().maxDamage(1079)));
+    public static final Item DIAMOND_SHIELD = registerItem("diamond_shield",
+            new ModShieldItem(new FabricItemSettings().maxDamage(664)));
+    public static final Item GOLD_SHIELD = registerItem("gold_shield",
+            new ModShieldItem(new FabricItemSettings().maxDamage(83)));
+    public static final Item WOODEN_SHIELD = registerItem("wooden_shield",
+            new ModShieldItem(new FabricItemSettings().maxDamage(166)));
 
     //Returns an Item, using the java registry(important identifier stuff)
     private static Item registerItem(String name, Item item){

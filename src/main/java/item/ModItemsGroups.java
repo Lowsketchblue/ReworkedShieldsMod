@@ -17,9 +17,11 @@ public class ModItemsGroups {
             new Identifier(ReworkedShieldsMod.MOD_ID, "ruby"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.ruby"))
                 .icon(() -> new ItemStack(Items.SHIELD)).entries((displayContext, entries) -> {
-                    //From here just add the custom items
 
-                    entries.add(Items.DIAMOND);
+                    entries.add(ModItems.WOODEN_SHIELD);
+                    entries.add(Items.SHIELD);
+                    entries.add(ModItems.GOLD_SHIELD);
+                    entries.add(ModItems.DIAMOND_SHIELD);
                     entries.add(ModItems.NETHERITE_SHIELD);
 
             }).build());

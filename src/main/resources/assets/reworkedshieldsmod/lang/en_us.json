@@ -1,6 +1,16 @@
 {
   "item.reworkedshieldsmod.ruby": "Ruby :0",
+
+  "item.reworkedshieldsmod.wooden_shield": "Wooden Shield",
+  "item.reworkedshieldsmod.gold_shield": "Gold Shield",
+  "item.reworkedshieldsmod.diamond_shield": "Diamond Shield",
   "item.reworkedshieldsmod.netherite_shield": "Netherite Shield",
+
+  "enchantment.reworkedshieldsmod.quick_recovery": "Quick Recovery",
+  "enchantment.reworkedshieldsmod.windswept": "Windswept",
+  "enchantment.reworkedshieldsmod.heartbound": "Heartbound",
+  "enchantment.reworkedshieldsmod.bulwark": "Bulwark",
+  "enchantment.reworkedshieldsmod.retribution": "Retribution",
 
   "itemgroup.ruby": "Reworked Shields"
 }
