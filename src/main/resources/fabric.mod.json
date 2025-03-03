@@ -3,13 +3,13 @@
 	"id": "reworkedshieldsmod",
 	"version": "${version}",
 	"name": "Reworked Shields Mod",
-	"description": "Reworks minecraft shields and adds tiered shields!",
+	"description": "Reworks Minecraft shield mechanics and adds tiered shields!",
 	"authors": [
-		"Me!"
+		"LowSketchBlue"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/Lowsketchblue/ReworkedShieldsMod/tree/master"
 	},
 	"license": "MIT",
 	"icon": "assets/reworkedshieldsmod/icon.png",
