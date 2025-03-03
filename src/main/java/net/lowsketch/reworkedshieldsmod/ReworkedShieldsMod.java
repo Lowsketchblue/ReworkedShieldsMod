@@ -4,6 +4,7 @@ import item.ModItems;
 import item.ModItemsGroups;
 import net.fabricmc.api.ModInitializer;
 
+import net.lowsketch.reworkedshieldsmod.config.ConfigManager;
 import net.lowsketch.reworkedshieldsmod.enchantments.ModEnchantments;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
@@ -26,5 +27,6 @@ public class ReworkedShieldsMod implements ModInitializer {
 		ModItems.registerModItems();
 		ModItemsGroups.registerItemGroups();
 		ModEnchantments.registerModEnchantments();
+		ConfigManager.loadConfig();
 	}
 }

@@ -2,8 +2,10 @@ package net.lowsketch.reworkedshieldsmod.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import item.ModItems;
+import net.fabricmc.loader.api.FabricLoader;
 import net.lowsketch.reworkedshieldsmod.ReworkedShieldsMod;
 
+import net.lowsketch.reworkedshieldsmod.config.ConfigManager;
 import net.lowsketch.reworkedshieldsmod.util.EnchantsManager;
 import net.lowsketch.reworkedshieldsmod.util.ModTags;
 import net.minecraft.entity.Entity;
@@ -29,6 +31,7 @@ import net.minecraft.util.math.Vec3d;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(LivingEntity.class)
 public class ShieldOverhaulMixin {
@@ -36,6 +39,8 @@ public class ShieldOverhaulMixin {
     private int tickCountdown = -1;
     private float shieldDurabilityDamage = 0;
     private int parryTicks = 0;
+    private int preventSpamTicks = -1;
+    private boolean loweredShield = false;
 
     @ModifyVariable(method = "damage", at = @At("LOAD"), ordinal = 1)
     private float modifyDamage(float amount, DamageSource source) {
@@ -52,9 +57,9 @@ public class ShieldOverhaulMixin {
                 if (attacker instanceof LivingEntity livingEntity) {
                     ItemStack heldItem = livingEntity.getMainHandStack();
 
-                    if (heldItem.getItem() instanceof AxeItem) { // Verifica si es un hacha
+                    if (heldItem.getItem() instanceof AxeItem) {
                         this.tickCountdown = 3;
-                        ReworkedShieldsMod.LOGGER.info("Escudo desactivado por hacha!");
+                        ReworkedShieldsMod.LOGGER.info("Shield disabled by axe!");
                     }
                 }
 
@@ -73,7 +78,7 @@ public class ShieldOverhaulMixin {
                     }
                 }else{
 
-                    if(parryTicks > 0){
+                    if(parryTicks >= 0){
                         ProjectileEntity projectile = (ProjectileEntity) entity;
                         Entity shooter = projectile.getOwner();
                         if(shooter != null && projectile instanceof ArrowEntity arrow){
@@ -137,7 +142,20 @@ public class ShieldOverhaulMixin {
         return false;
     }
 
-    //this function makes it so it doesn't immediately lowers the shield to prevent ghost hits
+    //Allows for compatibility with Combatify
+    @Inject(method = "damage", at = @At("RETURN"))
+    public void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> info) {
+        if(!FabricLoader.getInstance().isModLoaded("combatify")){return;    }
+
+        if ((Object) this instanceof PlayerEntity player) {
+            if(player.isUsingItem() && verifyShieldType(player)) {
+                this.tickCountdown = 3;
+                ReworkedShieldsMod.LOGGER.info("Combatify version used!");
+            }
+        }
+    }
+
+    //This function makes it so it doesn't immediately lowers the shield to prevent ghost hits
     @Inject(method = "tick", at = @At("HEAD"))
     private void tick(CallbackInfo info) {
         if (this.tickCountdown > 0) {
@@ -146,11 +164,22 @@ public class ShieldOverhaulMixin {
                 lowerShield(false);
             }
         }
+        parryTicks--;
+        preventSpamTicks--;
         if ((Object) this instanceof PlayerEntity player) {
-            if(player.isUsingItem() && verifyShieldType(player)) {
-                parryTicks--;
+            if(player.isUsingItem() && verifyShieldType(player)) { //All of this mumbo jumbo to prevent shield spamming.
+                if(preventSpamTicks < 0){
+                    parryTicks = ConfigManager.getIntConfig("parry_ticks", 6);
+                }
+                loweredShield = false;
             }else{
-                parryTicks = 6;//Default 6
+                if (!loweredShield){
+                    if(ConfigManager.getBooleanConfig("prevent_shield_spamming", true)){
+                        preventSpamTicks = 11;
+                    }
+                    loweredShield = true;
+                }
+
             }
         }
     }
@@ -162,11 +191,17 @@ public class ShieldOverhaulMixin {
                 float qR = 1.0f - (EnchantsManager.getLevel(player) * 0.11f); //11%
                 float aC = byAxe ? 2 : 1;
 
-                player.getItemCooldownManager().set(ModItems.NETHERITE_SHIELD, (int) (28 * qR * aC)); // 1.4 seconds
-                player.getItemCooldownManager().set(ModItems.DIAMOND_SHIELD, (int) (36 * qR * aC)); // 1.8 seconds
-                player.getItemCooldownManager().set(ModItems.GOLD_SHIELD, (int) (26 * qR * aC)); // 1.3 seconds
-                player.getItemCooldownManager().set(Items.SHIELD, (int) (48 * qR * aC)); // 1.9 seconds
-                player.getItemCooldownManager().set(ModItems.WOODEN_SHIELD, (int) (50 * qR * aC)); // 2.5 seconds
+                int w= ConfigManager.getIntConfig("wooden_shield_cooldown", 56);
+                int i= ConfigManager.getIntConfig("iron_shield_cooldown", 44);
+                int g= ConfigManager.getIntConfig("gold_shield_cooldown", 24);
+                int d= ConfigManager.getIntConfig("diamond_shield_cooldown", 36);
+                int n= ConfigManager.getIntConfig("netherite_shield_cooldown", 28);
+
+                player.getItemCooldownManager().set(ModItems.NETHERITE_SHIELD, (int) (n * qR * aC)); // 1.4 seconds
+                player.getItemCooldownManager().set(ModItems.DIAMOND_SHIELD, (int) (d * qR * aC)); // 1.8 seconds
+                player.getItemCooldownManager().set(ModItems.GOLD_SHIELD, (int) (g * qR * aC)); // 1.2 seconds
+                player.getItemCooldownManager().set(Items.SHIELD, (int) (i * qR * aC)); // 2.2 seconds
+                player.getItemCooldownManager().set(ModItems.WOODEN_SHIELD, (int) (w * qR * aC)); // 3 seconds
 
                 damageShield(player);
 
@@ -189,7 +224,6 @@ public class ShieldOverhaulMixin {
             int i = 1 + MathHelper.floor(shieldDurabilityDamage);
             activeShield.damage(i, player, (player2) -> player2.sendToolBreakStatus(hand));
         }
-
     }
 
     private boolean verifyShieldType(PlayerEntity player){return player.getActiveItem().isIn(ModTags.Items.IS_SHIELD_ITEM);}
