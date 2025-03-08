@@ -293,7 +293,6 @@
 		}
 	],
 	"overrides": [
-		{"predicate": {"blocking": 1}, "model": "reworkedshieldsmod:item/ruby_staff_3d"}
 	],
 	"display": {
 		"thirdperson_righthand": {

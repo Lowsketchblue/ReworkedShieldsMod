@@ -110,17 +110,15 @@
 		}
 	],
 	"overrides": [
-		{"predicate": {"blocking": 1}, "model": "reworkedshieldsmod:item/ruby_staff_3d"}
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [0, 90, 0],
-			"translation": [0.5, -6, 3]
+			"rotation": [45, 136, 0],
+			"translation": [0.75, -4.25, -2.25]
 		},
-		"firstperson_righthand": {
-			"rotation": [0, 180, -5],
-			"translation": [-3.75, -16, -2.5],
-			"scale": [1.65, 1.65, 1.65]
+		"thirdperson_lefthand": {
+			"rotation": [45, 137, 0],
+			"translation": [3, -6.5, -0.5]
 		},
 		"firstperson_righthand": {
 			"rotation": [0, 180, -5],

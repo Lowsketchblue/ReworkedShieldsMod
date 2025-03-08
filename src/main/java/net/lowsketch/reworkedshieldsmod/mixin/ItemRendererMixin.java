@@ -26,8 +26,10 @@ public abstract class ItemRendererMixin {
             if (MinecraftClient.getInstance().player != null) {
                 isBlocking = MinecraftClient.getInstance().player.isUsingItem() && MinecraftClient.getInstance().player.getActiveItem().isOf(ModItems.NETHERITE_SHIELD);
             }
-
-            if ((renderMode == ModelTransformationMode.FIRST_PERSON_LEFT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_RIGHT_HAND) && isBlocking) {
+            //if ((renderMode == ModelTransformationMode.FIRST_PERSON_LEFT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_RIGHT_HAND) && isBlocking) {
+            //    return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "netherite_shield_blocking", "inventory"));
+            //}
+            if(isBlocking){
                 return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "netherite_shield_blocking", "inventory"));
             }
             return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "netherite_shield", "inventory"));
@@ -39,8 +41,7 @@ public abstract class ItemRendererMixin {
             if (MinecraftClient.getInstance().player != null) {
                 isBlocking = MinecraftClient.getInstance().player.isUsingItem() && MinecraftClient.getInstance().player.getActiveItem().isOf(ModItems.DIAMOND_SHIELD);
             }
-
-            if ((renderMode == ModelTransformationMode.FIRST_PERSON_LEFT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_RIGHT_HAND) && isBlocking) {
+            if(isBlocking){
                 return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "diamond_shield_blocking", "inventory"));
             }
             return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "diamond_shield", "inventory"));
@@ -53,7 +54,7 @@ public abstract class ItemRendererMixin {
                 isBlocking = MinecraftClient.getInstance().player.isUsingItem() && MinecraftClient.getInstance().player.getActiveItem().isOf(ModItems.GOLD_SHIELD);
             }
 
-            if ((renderMode == ModelTransformationMode.FIRST_PERSON_LEFT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_RIGHT_HAND) && isBlocking) {
+            if(isBlocking){
                 return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "gold_shield_blocking", "inventory"));
             }
             return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "gold_shield", "inventory"));
@@ -65,8 +66,7 @@ public abstract class ItemRendererMixin {
             if (MinecraftClient.getInstance().player != null) {
                 isBlocking = MinecraftClient.getInstance().player.isUsingItem() && MinecraftClient.getInstance().player.getActiveItem().isOf(ModItems.WOODEN_SHIELD);
             }
-
-            if ((renderMode == ModelTransformationMode.FIRST_PERSON_LEFT_HAND || renderMode == ModelTransformationMode.FIRST_PERSON_RIGHT_HAND) && isBlocking) {
+            if(isBlocking){
                 return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "wooden_shield_blocking", "inventory"));
             }
             return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "wooden_shield", "inventory"));
