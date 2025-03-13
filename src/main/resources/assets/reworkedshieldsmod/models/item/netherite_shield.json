@@ -123,6 +123,12 @@
 		}
 	],
 	"overrides": [
+		{
+			"predicate": {
+				"blocking": 1
+			},
+			"model": "reworkedshieldsmod:item/netherite_shield_blocking"
+		}
 	],
 	"display": {
 		"thirdperson_righthand": {

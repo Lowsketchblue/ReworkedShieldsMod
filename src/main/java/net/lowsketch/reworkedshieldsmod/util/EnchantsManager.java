@@ -1,19 +1,6 @@
 package net.lowsketch.reworkedshieldsmod.util;
 
-import net.lowsketch.reworkedshieldsmod.ReworkedShieldsMod;
-import net.lowsketch.reworkedshieldsmod.enchantments.ModEnchantments;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageSources;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-
+/*
 public class EnchantsManager {
 
     public static int getLevel(PlayerEntity player){
@@ -88,4 +75,4 @@ public class EnchantsManager {
             }
         }
     }
-}
+}*/

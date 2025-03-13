@@ -293,6 +293,12 @@
 		}
 	],
 	"overrides": [
+		{
+			"predicate": {
+				"blocking": 1
+			},
+			"model": "reworkedshieldsmod:item/diamond_shield_blocking"
+		}
 	],
 	"display": {
 		"thirdperson_righthand": {

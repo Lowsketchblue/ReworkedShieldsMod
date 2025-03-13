@@ -9,10 +9,10 @@ import net.minecraft.util.Identifier;
 public class ModTags {
     public static class Items{
 
-        public static final TagKey<Item> IS_SHIELD_ITEM =
-                    createTag("is_shield_item");
+        public static final TagKey<Item> IS_SHIELD_ITEM = createTag("is_shield_item");
+
         private static TagKey<Item> createTag(String name){
-            return TagKey.of(RegistryKeys.ITEM, new Identifier(ReworkedShieldsMod.MOD_ID, name));
+            return TagKey.of(RegistryKeys.ITEM, Identifier.of(ReworkedShieldsMod.MOD_ID, name));
         }
     }
 }

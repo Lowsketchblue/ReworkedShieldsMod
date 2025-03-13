@@ -1,3 +1,4 @@
+
 package net.lowsketch.reworkedshieldsmod.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
@@ -6,9 +7,10 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.lowsketch.reworkedshieldsmod.ReworkedShieldsMod;
 
 import net.lowsketch.reworkedshieldsmod.config.ConfigManager;
-import net.lowsketch.reworkedshieldsmod.util.EnchantsManager;
+//import net.lowsketch.reworkedshieldsmod.util.EnchantsManager;
 import net.lowsketch.reworkedshieldsmod.util.ModTags;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 
@@ -17,6 +19,7 @@ import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.AxeItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.tag.DamageTypeTags;
@@ -72,13 +75,14 @@ public class ShieldOverhaulMixin {
                         LivingEntity livingEntity = (LivingEntity)entity;
                         livingEntity.takeKnockback((double)0.5F,  player.getX()- livingEntity.getX(), player.getZ() - livingEntity.getZ());
                         if(parryTicks >= 0){
-                            EnchantsManager.ParryMeele(player);
-                            EnchantsManager.thorns(player, source);
+                            //EnchantsManager.ParryMeele(player);
+                            //EnchantsManager.thorns(player, source);
                         }
                     }
                 }else{
-
+                    ReworkedShieldsMod.LOGGER.info(String.valueOf(parryTicks));
                     if(parryTicks >= 0){
+
                         ProjectileEntity projectile = (ProjectileEntity) entity;
                         Entity shooter = projectile.getOwner();
                         if(shooter != null && projectile instanceof ArrowEntity arrow){
@@ -95,11 +99,11 @@ public class ShieldOverhaulMixin {
                             Vec3d direction = projectilePos.subtract(shooterPos.getX(), (shooter.getY()+1), shooterPos.getZ()).normalize();
 
                             projectile.setVelocity(direction.x, direction.y, direction.z, 40F, 0.0F);
-
                             //projectile.setVelocity(projectile.getX()- shooter.getX(), projectile.getY()- (shooter.getY()+1), projectile.getZ()- shooter.getZ(), 40, 0);
+
                             if(arrow.distanceTo(shooter) > 4.8f){
                                 player.getEntityWorld().playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS, 0.25f, 1f);
-                                EnchantsManager.ParryProjectile(player);
+                                //EnchantsManager.ParryProjectile(player);
                             }
                         }
                     }
@@ -145,7 +149,7 @@ public class ShieldOverhaulMixin {
     //Allows for compatibility with Combatify
     @Inject(method = "damage", at = @At("RETURN"))
     public void damage(DamageSource source, float amount, CallbackInfoReturnable<Boolean> info) {
-        if(!FabricLoader.getInstance().isModLoaded("combatify")){return;    }
+        //if(!FabricLoader.getInstance().isModLoaded("combatify")){return;    }
 
         if ((Object) this instanceof PlayerEntity player) {
             if(player.isUsingItem() && verifyShieldType(player)) {
@@ -169,7 +173,7 @@ public class ShieldOverhaulMixin {
         if ((Object) this instanceof PlayerEntity player) {
             if(player.isUsingItem() && verifyShieldType(player)) { //All of this mumbo jumbo to prevent shield spamming.
                 if(preventSpamTicks < 0){
-                    parryTicks = ConfigManager.getIntConfig("parry_ticks", 6);
+                    //parryTicks = ConfigManager.getIntConfig("parry_ticks", 6);
                 }
                 loweredShield = false;
             }else{
@@ -188,7 +192,9 @@ public class ShieldOverhaulMixin {
 
             if (player.isUsingItem() && verifyShieldType(player)) {
 
-                float qR = 1.0f - (EnchantsManager.getLevel(player) * 0.11f); //11%
+                //float qR = 1.0f - (EnchantsManager.getLevel(player) * 0.11f); //11%
+
+                float qR = 1.0f;
                 float aC = byAxe ? 2 : 1;
 
                 int w= ConfigManager.getIntConfig("wooden_shield_cooldown", 56);
@@ -219,14 +225,23 @@ public class ShieldOverhaulMixin {
         ItemStack activeShield = player.getActiveItem();
         if(activeShield.isOf(Items.SHIELD)){return;}
 
-        Hand hand = player.getActiveHand();
+        Hand activeHand = player.getActiveHand();
+        EquipmentSlot slot = (activeHand == Hand.MAIN_HAND) ? EquipmentSlot.MAINHAND : EquipmentSlot.OFFHAND;
+
         if(shieldDurabilityDamage >= 2.0F){
             int i = 1 + MathHelper.floor(shieldDurabilityDamage);
-            activeShield.damage(i, player, (player2) -> player2.sendToolBreakStatus(hand));
+            activeShield.damage(i, player, slot);
         }
     }
 
-    private boolean verifyShieldType(PlayerEntity player){return player.getActiveItem().isIn(ModTags.Items.IS_SHIELD_ITEM);}
+    private boolean verifyShieldType(PlayerEntity player){
+        //return player.getActiveItem().isIn(ModTags.Items.IS_SHIELD_ITEM);
+        return player.getActiveItem().isOf(ModItems.WOODEN_SHIELD) ||
+                player.getActiveItem().isOf(Items.SHIELD) ||
+                player.getActiveItem().isOf(ModItems.GOLD_SHIELD) ||
+                player.getActiveItem().isOf(ModItems.DIAMOND_SHIELD) ||
+                player.getActiveItem().isOf(ModItems.NETHERITE_SHIELD);
+    }
 
     //Credit to Knoqx Quplet  on github for the NoShieldDelay mod.
     @ModifyConstant(method = "isBlocking", constant = @Constant(intValue = 5))

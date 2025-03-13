@@ -1,14 +1,12 @@
-package net.lowsketch.reworkedshieldsmod.enchantments;
+package net.lowsketch.reworkedshieldsmod.enchantment.enchantments;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShieldItem;
+//import net.lowsketch.reworkedshieldsmod.item.ModShieldItem;
+//import net.minecraft.enchantment.EnchantmentTarget;
 
-public class WindsweptEnchantment extends Enchantment{
+/*
+public class QuickRecoveryEnchantment extends Enchantment {
 
-    public WindsweptEnchantment() {
+    public QuickRecoveryEnchantment() {
         super(
                 Enchantment.Rarity.RARE,
                 EnchantmentTarget.BREAKABLE,
@@ -21,15 +19,14 @@ public class WindsweptEnchantment extends Enchantment{
         return 3;
     }
 
-    //                                   base      level   level mult
+    //                                  base      level   levelmult
     public int getMinPower(int level) {
-        return 1 + (level - 1) * 4;
+        return 3 + (level - 1) * 5;
     }
 
     public int getMaxPower(int level) {
-        return super.getMinPower(level) + 25;
+        return super.getMinPower(level) + 50;
     }
-
 
     @Override
     public boolean isAcceptableItem(ItemStack stack) {
@@ -41,7 +38,8 @@ public class WindsweptEnchantment extends Enchantment{
     }
     @Override
     public boolean canAccept(Enchantment other) {
-        return super.canAccept(other) && other != ModEnchantments.HEARTBOUND;
+        return super.canAccept(other);
         //return super.canAccept(other) && other != ModEnchantments.ANOTHER_ENCHANTMENT && other != ModEnchantments.YET_ANOTHER_ENCHANTMENT;
     }
 }
+*/

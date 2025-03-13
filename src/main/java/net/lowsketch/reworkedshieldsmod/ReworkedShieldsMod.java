@@ -1,17 +1,12 @@
 package net.lowsketch.reworkedshieldsmod;
 
 import item.ModItems;
-import item.ModItemsGroups;
 import net.fabricmc.api.ModInitializer;
 
 import net.lowsketch.reworkedshieldsmod.config.ConfigManager;
-import net.lowsketch.reworkedshieldsmod.enchantments.ModEnchantments;
-import net.minecraft.item.Item;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.util.Identifier;
+import net.lowsketch.reworkedshieldsmod.enchantment.ModEnchantmentEffects;
+import net.lowsketch.reworkedshieldsmod.enchantment.ModEnchantments;
+import net.lowsketch.reworkedshieldsmod.item.ModItemGroups;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,8 +20,8 @@ public class ReworkedShieldsMod implements ModInitializer {
 	public void onInitialize() {
 
 		ModItems.registerModItems();
-		ModItemsGroups.registerItemGroups();
-		ModEnchantments.registerModEnchantments();
+		ModItemGroups.registerItemGroups();
+		ModEnchantmentEffects.registerModEnchantments();
 		ConfigManager.loadConfig();
 	}
 }

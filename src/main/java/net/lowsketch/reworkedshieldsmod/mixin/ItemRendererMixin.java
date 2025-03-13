@@ -10,6 +10,7 @@ import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -30,9 +31,9 @@ public abstract class ItemRendererMixin {
             //    return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "netherite_shield_blocking", "inventory"));
             //}
             if(isBlocking){
-                return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "netherite_shield_blocking", "inventory"));
+                return accessor.mccourse$getModels().getModelManager().getModel(Identifier.of(ReworkedShieldsMod.MOD_ID, "netherite_shield_blocking"));
             }
-            return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "netherite_shield", "inventory"));
+            return accessor.mccourse$getModels().getModelManager().getModel(Identifier.of(ReworkedShieldsMod.MOD_ID, "netherite_shield"));
         }
         if (stack.isOf(ModItems.DIAMOND_SHIELD)) {
             ItemRendererAccessor accessor = (ItemRendererAccessor) this;
@@ -42,9 +43,9 @@ public abstract class ItemRendererMixin {
                 isBlocking = MinecraftClient.getInstance().player.isUsingItem() && MinecraftClient.getInstance().player.getActiveItem().isOf(ModItems.DIAMOND_SHIELD);
             }
             if(isBlocking){
-                return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "diamond_shield_blocking", "inventory"));
+                return accessor.mccourse$getModels().getModelManager().getModel(Identifier.of(ReworkedShieldsMod.MOD_ID, "diamond_shield_blocking"));
             }
-            return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "diamond_shield", "inventory"));
+            return accessor.mccourse$getModels().getModelManager().getModel(Identifier.of(ReworkedShieldsMod.MOD_ID, "diamond_shield"));
         }
         if (stack.isOf(ModItems.GOLD_SHIELD)) {
             ItemRendererAccessor accessor = (ItemRendererAccessor) this;
@@ -55,9 +56,9 @@ public abstract class ItemRendererMixin {
             }
 
             if(isBlocking){
-                return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "gold_shield_blocking", "inventory"));
+                return accessor.mccourse$getModels().getModelManager().getModel(Identifier.of(ReworkedShieldsMod.MOD_ID, "gold_shield_blocking"));
             }
-            return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "gold_shield", "inventory"));
+            return accessor.mccourse$getModels().getModelManager().getModel(Identifier.of(ReworkedShieldsMod.MOD_ID, "gold_shield"));
         }
         if (stack.isOf(ModItems.WOODEN_SHIELD)) {
             ItemRendererAccessor accessor = (ItemRendererAccessor) this;
@@ -67,12 +68,11 @@ public abstract class ItemRendererMixin {
                 isBlocking = MinecraftClient.getInstance().player.isUsingItem() && MinecraftClient.getInstance().player.getActiveItem().isOf(ModItems.WOODEN_SHIELD);
             }
             if(isBlocking){
-                return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "wooden_shield_blocking", "inventory"));
+                return accessor.mccourse$getModels().getModelManager().getModel(Identifier.of(ReworkedShieldsMod.MOD_ID, "wooden_shield_blocking"));
             }
-            return accessor.mccourse$getModels().getModelManager().getModel(new ModelIdentifier(ReworkedShieldsMod.MOD_ID, "wooden_shield", "inventory"));
+            return accessor.mccourse$getModels().getModelManager().getModel(Identifier.of(ReworkedShieldsMod.MOD_ID, "wooden_shield"));
         }
         return value;
     }
-
 
 }

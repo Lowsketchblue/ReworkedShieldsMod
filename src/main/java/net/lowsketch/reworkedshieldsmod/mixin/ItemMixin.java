@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 // 1 gives ~30% eff 4, unb 3; ~40% eff 3, unb 3; rest junk
 // 0 is unenchantable
 // I would prefer eff 4 + unb 3 to be impossible but I have a life to get back to
-
+/*
 @Mixin(Item.class)
 public class ItemMixin {
 
@@ -28,4 +28,4 @@ public class ItemMixin {
         }
 
     }
-}
+}*/

@@ -1,11 +1,8 @@
-package net.lowsketch.reworkedshieldsmod.enchantments;
+package net.lowsketch.reworkedshieldsmod.enchantment.enchantments;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShieldItem;
+//import net.minecraft.enchantment.EnchantmentTarget;
 
+/*
 public class RetributionEnchantment extends Enchantment{
 
     public RetributionEnchantment() {
@@ -44,3 +41,4 @@ public class RetributionEnchantment extends Enchantment{
         return super.canAccept(other) && other != ModEnchantments.BULWARK;
     }
 }
+*/

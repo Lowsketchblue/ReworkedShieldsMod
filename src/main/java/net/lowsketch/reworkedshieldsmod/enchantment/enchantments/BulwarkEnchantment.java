@@ -1,14 +1,11 @@
-package net.lowsketch.reworkedshieldsmod.enchantments;
+package net.lowsketch.reworkedshieldsmod.enchantment.enchantments;
 
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentTarget;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ShieldItem;
+//import net.minecraft.enchantment.EnchantmentTarget;
 
-public class HeartboundEnchantment extends Enchantment{
+/*
+public class BulwarkEnchantment extends Enchantment{
 
-    public HeartboundEnchantment() {
+    public BulwarkEnchantment() {
         super(
                 Rarity.RARE,
                 EnchantmentTarget.BREAKABLE,
@@ -18,12 +15,11 @@ public class HeartboundEnchantment extends Enchantment{
 
     @Override
     public int getMaxLevel() {
-        return 1;
+        return 3;
     }
 
-    //                                        base
-    public int getMinPower(int level) {
-        return 15;
+    //                                  base      level   level mult
+    public int getMinPower(int level) {return 3 + (level - 1) * 7;
     }
 
     public int getMaxPower(int level) {
@@ -40,7 +36,8 @@ public class HeartboundEnchantment extends Enchantment{
     }
     @Override
     public boolean canAccept(Enchantment other) {
-        return super.canAccept(other) && other != ModEnchantments.WINDSWEPT;
+        return super.canAccept(other);
         //return super.canAccept(other) && other != ModEnchantments.ANOTHER_ENCHANTMENT && other != ModEnchantments.YET_ANOTHER_ENCHANTMENT;
     }
 }
+*/

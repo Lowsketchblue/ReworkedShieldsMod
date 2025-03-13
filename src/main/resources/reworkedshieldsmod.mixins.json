@@ -3,14 +3,10 @@
 	"package": "net.lowsketch.reworkedshieldsmod.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ShieldOverhaulMixin",
-		"EnchantmentHelperMixin",
-		"ItemMixin"
+		"ShieldOverhaulMixin"
 	],
 	"client": [
-		"ItemRendererAccessor",
-		"ItemRendererMixin",
-		"ModelLoaderMixin"
+		"ItemRendererAccessor"
 	],
 	"injectors": {
 		"defaultRequire": 1
