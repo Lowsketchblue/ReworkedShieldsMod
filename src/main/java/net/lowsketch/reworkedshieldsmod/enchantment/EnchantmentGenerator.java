@@ -1,9 +1,9 @@
-package net.lowsketch.reworkedshieldsmod.util;
+package net.lowsketch.reworkedshieldsmod.enchantment;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
-import net.lowsketch.reworkedshieldsmod.enchantment.ModEnchantments;
+import net.lowsketch.reworkedshieldsmod.enchantment.effects.LightningEnchantmentEffect;
 import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.enchantment.Enchantment;
@@ -16,8 +16,7 @@ import net.minecraft.registry.tag.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
 
-//public class EnchantmentGenerator extends FabricDynamicRegistryProvider {
-    /*
+public class EnchantmentGenerator extends FabricDynamicRegistryProvider {
     public EnchantmentGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
         super(output, registriesFuture);
         System.out.println("REGISTERING ENCHANTS");
@@ -25,8 +24,10 @@ import java.util.concurrent.CompletableFuture;
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-        register(entries, ModEnchantments.THUNDERING, Enchantment.builder( Enchantment.definition(
-                                        registries.getOptionalWrapper(RegistryKeys.ITEM).getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+        // Our new enchantment, "Thundering."
+        register(entries, ModEnchantmentEffects.THUNDERING, Enchantment.builder(
+                                Enchantment.definition(
+                                        registries.getWrapperOrThrow(RegistryKeys.ITEM).getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
                                         // this is the "weight" or probability of our enchantment showing up in the table
                                         10,
                                         // the maximum level of the enchantment
@@ -57,6 +58,6 @@ import java.util.concurrent.CompletableFuture;
 
     @Override
     public String getName() {
-        return "EnchantmentGenerator";
-    }*/
-//}
+        return "ReferenceDocEnchantmentGenerator";
+    }
+}

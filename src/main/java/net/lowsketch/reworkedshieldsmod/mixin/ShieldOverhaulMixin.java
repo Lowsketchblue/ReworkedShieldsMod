@@ -43,7 +43,7 @@ public class ShieldOverhaulMixin {
     private float shieldDurabilityDamage = 0;
     private int parryTicks = 0;
     private int preventSpamTicks = -1;
-    private boolean loweredShield = false;
+    private boolean loweredShield = true;
 
     @ModifyVariable(method = "damage", at = @At("LOAD"), ordinal = 1)
     private float modifyDamage(float amount, DamageSource source) {
@@ -172,8 +172,8 @@ public class ShieldOverhaulMixin {
         preventSpamTicks--;
         if ((Object) this instanceof PlayerEntity player) {
             if(player.isUsingItem() && verifyShieldType(player)) { //All of this mumbo jumbo to prevent shield spamming.
-                if(preventSpamTicks < 0){
-                    //parryTicks = ConfigManager.getIntConfig("parry_ticks", 6);
+                if(preventSpamTicks < 0 && loweredShield){
+                    parryTicks = ConfigManager.getIntConfig("parry_ticks", 6);
                 }
                 loweredShield = false;
             }else{

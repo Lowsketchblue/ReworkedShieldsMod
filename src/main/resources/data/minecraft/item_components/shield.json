@@ -1,0 +1,6 @@
+{
+  "minecraft:enchantable": {
+    "value": true
+  },
+  "minecraft:enchantments": {}
+}

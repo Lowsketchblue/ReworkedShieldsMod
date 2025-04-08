@@ -1,14 +1,13 @@
-package net.lowsketch.reworkedshieldsmod.enchantment.enchantments;
+package net.lowsketch.reworkedshieldsmod.enchantment.enchantmentsOLD;
 
-//import net.lowsketch.reworkedshieldsmod.item.ModShieldItem;
 //import net.minecraft.enchantment.EnchantmentTarget;
 
 /*
-public class QuickRecoveryEnchantment extends Enchantment {
+public class RetributionEnchantment extends Enchantment{
 
-    public QuickRecoveryEnchantment() {
+    public RetributionEnchantment() {
         super(
-                Enchantment.Rarity.RARE,
+                Rarity.RARE,
                 EnchantmentTarget.BREAKABLE,
                 new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND}
         );
@@ -19,14 +18,15 @@ public class QuickRecoveryEnchantment extends Enchantment {
         return 3;
     }
 
-    //                                  base      level   levelmult
+    //                                   base      level   level mult
     public int getMinPower(int level) {
-        return 3 + (level - 1) * 5;
+        return 8 + (level - 1) * 12;
     }
 
     public int getMaxPower(int level) {
-        return super.getMinPower(level) + 50;
+        return super.getMinPower(level) + 25;
     }
+
 
     @Override
     public boolean isAcceptableItem(ItemStack stack) {
@@ -38,8 +38,7 @@ public class QuickRecoveryEnchantment extends Enchantment {
     }
     @Override
     public boolean canAccept(Enchantment other) {
-        return super.canAccept(other);
-        //return super.canAccept(other) && other != ModEnchantments.ANOTHER_ENCHANTMENT && other != ModEnchantments.YET_ANOTHER_ENCHANTMENT;
+        return super.canAccept(other) && other != ModEnchantments.BULWARK;
     }
 }
 */

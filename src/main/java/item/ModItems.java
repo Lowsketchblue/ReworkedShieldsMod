@@ -11,10 +11,8 @@ import net.minecraft.util.Identifier;
 
 public class ModItems {
     //This creates the items using the function what we created called registerItem
-
-    //332
-    public static final Item NETHERITE_SHIELD = registerItem("netherite_shield",
-            new ShieldItem(new Item.Settings().maxDamage(1079)));
+    public static final Item NETHERITE_SHIELD =
+            registerItem("netherite_shield", new ShieldItem(new Item.Settings().maxDamage(1079)));
     public static final Item DIAMOND_SHIELD = registerItem("diamond_shield",
             new ShieldItem(new Item.Settings().maxDamage(664)));
     public static final Item GOLD_SHIELD = registerItem("gold_shield",

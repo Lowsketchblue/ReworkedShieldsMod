@@ -1,4 +1,4 @@
-package net.lowsketch.reworkedshieldsmod.enchantment.enchantments;
+package net.lowsketch.reworkedshieldsmod.enchantment.enchantmentsOLD;
 
 //import net.minecraft.enchantment.EnchantmentTarget;
 

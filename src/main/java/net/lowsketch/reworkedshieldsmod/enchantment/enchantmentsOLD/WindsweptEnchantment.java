@@ -1,13 +1,13 @@
-package net.lowsketch.reworkedshieldsmod.enchantment.enchantments;
+package net.lowsketch.reworkedshieldsmod.enchantment.enchantmentsOLD;
 
 //import net.minecraft.enchantment.EnchantmentTarget;
 
 /*
-public class RetributionEnchantment extends Enchantment{
+public class WindsweptEnchantment extends Enchantment{
 
-    public RetributionEnchantment() {
+    public WindsweptEnchantment() {
         super(
-                Rarity.RARE,
+                Enchantment.Rarity.RARE,
                 EnchantmentTarget.BREAKABLE,
                 new EquipmentSlot[]{EquipmentSlot.MAINHAND, EquipmentSlot.OFFHAND}
         );
@@ -20,7 +20,7 @@ public class RetributionEnchantment extends Enchantment{
 
     //                                   base      level   level mult
     public int getMinPower(int level) {
-        return 8 + (level - 1) * 12;
+        return 1 + (level - 1) * 4;
     }
 
     public int getMaxPower(int level) {
@@ -38,7 +38,8 @@ public class RetributionEnchantment extends Enchantment{
     }
     @Override
     public boolean canAccept(Enchantment other) {
-        return super.canAccept(other) && other != ModEnchantments.BULWARK;
+        return super.canAccept(other) && other != ModEnchantments.HEARTBOUND;
+        //return super.canAccept(other) && other != ModEnchantments.ANOTHER_ENCHANTMENT && other != ModEnchantments.YET_ANOTHER_ENCHANTMENT;
     }
 }
 */
