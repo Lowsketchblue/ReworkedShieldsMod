@@ -1,0 +1,10 @@
+{
+  "mace_hit": {
+    "sounds": [
+      {
+        "name": "reworkedshieldsmod:mace_hit",
+        "stream": false
+      }
+    ]
+  }
+}

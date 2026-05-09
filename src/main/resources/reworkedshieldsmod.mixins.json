@@ -3,7 +3,8 @@
 	"package": "net.lowsketch.reworkedshieldsmod.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ShieldOverhaulMixin"
+		"ShieldOverhaulMixin",
+		"MaceItemMixin"
 	],
 	"client": [
 		"ItemRendererAccessor"

@@ -26,7 +26,7 @@ public class ConfigManager {
     }
 
     private static void setDefaultValues() {
-        properties.setProperty("wooden_shield_cooldown", "60");
+        properties.setProperty("wooden_shield_cooldown", "62");
         properties.setProperty("iron_shield_cooldown", "44");
         properties.setProperty("gold_shield_cooldown", "24");
         properties.setProperty("diamond_shield_cooldown", "36");

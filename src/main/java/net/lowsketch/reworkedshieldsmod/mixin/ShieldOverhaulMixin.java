@@ -14,6 +14,8 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
@@ -76,6 +78,8 @@ public class ShieldOverhaulMixin {
                         livingEntity.takeKnockback((double)0.5F,  player.getX()- livingEntity.getX(), player.getZ() - livingEntity.getZ());
                         if(parryTicks >= 0){
                             //EnchantsManager.ParryMeele(player);
+                            player.getEntityWorld().playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS, 0.25f, 1f);
+                            player.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 19, 1));
                             //EnchantsManager.thorns(player, source);
                         }
                     }
@@ -103,6 +107,7 @@ public class ShieldOverhaulMixin {
 
                             if(arrow.distanceTo(shooter) > 4.8f){
                                 player.getEntityWorld().playSound(null, player.getBlockPos(), SoundEvents.ENTITY_ARROW_HIT_PLAYER, SoundCategory.PLAYERS, 0.25f, 1f);
+                                player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 24, 2));
                                 //EnchantsManager.ParryProjectile(player);
                             }
                         }

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:modify_item",
-  "conditions": [],
-  "item": "minecraft:shield",
-  "components": {
-    "minecraft:enchantments": {}
-  }
-}
